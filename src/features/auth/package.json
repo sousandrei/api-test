@@ -1,0 +1,5 @@
+{
+	"name": "auth",
+	"main": "./auth.js",
+	"version": "1.0"
+}
