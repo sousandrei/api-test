@@ -7,14 +7,15 @@ const {
 	KNEX_DEBUG,
 } = process.env
 
-let knex = require('knex')
+let Knex = require('knex')
 let Bookshelf = require('bookshelf')
 
 exports.getBookshelf = () => Bookshelf
+exports.getKnex = () => Knex
 
 exports.startBookshelf = async () => {
 	try {
-		knex = knex({
+		Knex = Knex({
 			debug: JSON.parse(KNEX_DEBUG),
 			client: 'pg',
 			connection: {
@@ -25,7 +26,7 @@ exports.startBookshelf = async () => {
 			}
 		})
 
-		Bookshelf = Bookshelf(knex)
+		Bookshelf = Bookshelf(Knex)
 		Bookshelf.plugin('pagination')
 		Bookshelf.plugin('registry')
 
@@ -41,7 +42,7 @@ exports.startBookshelf = async () => {
 exports.stopBookshelf = async () => {
 
 	try {
-		await knex.destroy()
+		await Knex.destroy()
 	} catch (err) /* istanbul ignore next */ {
 		console.error(err)
 	}
