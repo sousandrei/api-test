@@ -51,6 +51,9 @@ exports.get = async (req, res) => {
 				]
 			})
 
+		if (!user)
+			return res.status(404).end()
+
 		user = user.toJSON()
 
 		for (let c of user.companies)
@@ -74,7 +77,8 @@ exports.get = async (req, res) => {
 
 		return res.status(200).json(user)
 	} catch (err) {
-		return res.status(500).json(err)
+		console.error(err)
+		return res.status(500).end()
 	}
 
 
