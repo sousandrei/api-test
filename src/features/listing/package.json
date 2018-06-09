@@ -1,0 +1,5 @@
+{
+	"name": "listing",
+	"main": "./listing.js",
+	"version": "1.0"
+}

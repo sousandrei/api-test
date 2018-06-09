@@ -1,0 +1,5 @@
+{
+	"name": "team",
+	"main": "./team.js",
+	"version": "1.0"
+}

@@ -1,0 +1,5 @@
+{
+	"name": "company",
+	"main": "./company.js",
+	"version": "1.0"
+}
