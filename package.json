@@ -28,6 +28,7 @@
     "helmet": "^3.12.1",
     "knex": "^0.14.6",
     "method-override": "^2.3.10",
+    "moment": "^2.22.2",
     "pg": "^7.4.3"
   },
   "devDependencies": {
