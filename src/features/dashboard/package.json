@@ -1,0 +1,5 @@
+{
+	"name": "dashboard",
+	"main": "./dashboard.js",
+	"version": "1.0"
+}
