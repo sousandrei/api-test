@@ -3,17 +3,19 @@ const {
 	POSTGRES_URL,
 	POSTGRES_PORT,
 	POSTGRES_USER,
-	POSTGRES_DATABASE
+	POSTGRES_DATABASE,
+	KNEX_DEBUG,
 } = process.env
 
 let knex = require('knex')
-let bookshelf = require('bookshelf')
+let Bookshelf = require('bookshelf')
 
-exports.getBookshelf = () => bookshelf
+exports.getBookshelf = () => Bookshelf
 
 exports.startBookshelf = async () => {
 	try {
 		knex = knex({
+			debug: JSON.parse(KNEX_DEBUG),
 			client: 'pg',
 			connection: {
 				host: POSTGRES_URL,
@@ -23,8 +25,9 @@ exports.startBookshelf = async () => {
 			}
 		})
 
-		bookshelf = bookshelf(knex)
-		bookshelf.plugin('pagination')
+		Bookshelf = Bookshelf(knex)
+		Bookshelf.plugin('pagination')
+		Bookshelf.plugin('registry')
 
 	} catch (err) /* istanbul ignore next */ {
 		console.error(err)
