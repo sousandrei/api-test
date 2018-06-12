@@ -20,7 +20,7 @@ describe('auth', () => {
 
 	afterAll(async () => await server.stopServer(server))
 
-	describe('check login', async () => {
+	describe('check isLoggedIn', async () => {
 
 		test('users', async () => {
 			await request(app)
