@@ -35,7 +35,7 @@ exports.startBookshelf = async () => {
 	}
 
 	/* istanbul ignore next */
-	if (ENV == 'dev')
+	if (ENV != 'test')
 		console.log('postgres connected')
 }
 
@@ -48,6 +48,6 @@ exports.stopBookshelf = async () => {
 	}
 
 	/* istanbul ignore next */
-	if (ENV == 'dev')
+	if (ENV != 'test')
 		console.log('postgres disconnected')
 }

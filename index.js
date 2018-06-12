@@ -9,6 +9,8 @@ const {
 process.on('unhandledRejection', (reason, p) => console.error(reason, p))
 
 async function main() {
+
+	console.log('starting')
 	
 	await require('./config/bookshelf').startBookshelf()
 	
@@ -26,10 +28,12 @@ async function main() {
 }
 
 async function stopServer(server) {
+	console.log('exiting')
+	
 	await new Promise(resolve => server.close(resolve))
 
 	/* istanbul ignore next */
-	if (ENV == 'dev')
+	if (ENV != 'test')
 		console.log('HTTP server offline')
 
 	await require('./config/bookshelf').stopBookshelf()
@@ -41,7 +45,7 @@ function startServer(app) {
 			.createServer(app)
 			.listen(PORT, () => {
 				/* istanbul ignore next */
-				if (ENV == 'dev')
+				if (ENV != 'test')
 					console.log(`HTTP server online ${PORT}`)
 
 				resolve(server)
