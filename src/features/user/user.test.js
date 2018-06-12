@@ -1,7 +1,5 @@
 require('dotenv').config()
 
-const { ENV } = process.env
-
 const request = require('supertest')
 
 describe('user', () => {
@@ -22,9 +20,33 @@ describe('user', () => {
 
 	describe('get', () => {
 
-		test('all', async () => {
+		test('no params', async () => {
 			await request(app)
 				.get('/api/users')
+				.expect(400)
+		})
+		
+		test('invalid param', async () => {
+			await request(app)
+				.get('/api/users?id=a')
+				.expect(400)
+		})
+		
+		test('non existant user', async () => {
+			await request(app)
+				.get('/api/users?id=100')
+				.expect(404)
+		})
+		
+		test('user with companies and listings', async () => {
+			await request(app)
+				.get('/api/users?id=1')
+				.expect(200)
+		})
+		
+		test('user with applications', async () => {
+			await request(app)
+				.get('/api/users?id=2')
 				.expect(200)
 		})
 
