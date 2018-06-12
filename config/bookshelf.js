@@ -15,7 +15,7 @@ exports.getKnex = () => Knex
 
 exports.startBookshelf = async () => {
 	try {
-		Knex = Knex({
+		Knex = await Knex({
 			debug: JSON.parse(KNEX_DEBUG),
 			client: 'pg',
 			connection: {
