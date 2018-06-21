@@ -1,3 +1,8 @@
+/*
+ implements the dashboard functions
+ complex QUERY is made direclty on Knex, stepping over Bookshelf
+ */
+
 const moment = require('moment')
 
 const Knex = require('../../../../config/bookshelf').getKnex()

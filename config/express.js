@@ -1,3 +1,9 @@
+/* 
+ basic express configuration
+ uses helmet for added safety
+ get routes from all features
+ */
+
 const helmet = require('helmet')
 const express = require('express')
 const { readdirSync } = require('fs')

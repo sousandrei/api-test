@@ -1,3 +1,8 @@
+/* 
+ functions for user routes
+ simpler QUERY can be done in bookshelf
+ */
+
 const User = require('../user.schema')
 
 exports.get = async (req, res) => {

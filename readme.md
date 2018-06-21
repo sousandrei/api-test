@@ -21,3 +21,9 @@ npm start
 npm i -g aglio
 aglio --theme-variables cyborg -i input.apib -o apidoc/api.html
 ```
+
+## Notes
+Libs folder should be used to store standalone functions of utilities that not belong to a single feature
+
+all features are separate as small packages, facilitating migration to microservice or serverless architecture
+

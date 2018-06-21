@@ -1,3 +1,8 @@
+/* 
+ setup postgres connection
+ can retrieve bookshelf and knex instances to reuse in other places
+ */
+
 const {
 	ENV,
 	POSTGRES_URL,
