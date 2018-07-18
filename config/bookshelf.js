@@ -9,6 +9,7 @@ const {
 	POSTGRES_PORT,
 	POSTGRES_USER,
 	POSTGRES_DATABASE,
+	POSTGRES_PASSWORD,
 	KNEX_DEBUG,
 } = process.env
 
@@ -27,6 +28,7 @@ exports.startBookshelf = async () => {
 				host: POSTGRES_URL,
 				port: POSTGRES_PORT,
 				user: POSTGRES_USER,
+				password: POSTGRES_PASSWORD,
 				database: POSTGRES_DATABASE
 			}
 		})
