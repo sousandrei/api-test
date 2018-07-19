@@ -24,7 +24,7 @@ describe('auth', () => {
 
 		test('users', async () => {
 			await request(app)
-				.get('/api/users')
+				.get('/api/users?id=1')
 				.expect(200)
 		})
 
