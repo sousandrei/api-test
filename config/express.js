@@ -5,11 +5,19 @@
  */
 
 const helmet = require('helmet')
+const morgan = require('morgan')
 const express = require('express')
 const { readdirSync } = require('fs')
 const bodyParser = require('body-parser')
 const compression = require('compression')
 const methodOverride = require('method-override')
+
+const { info } = require('./logger')
+
+const stream = {
+	write: msg =>
+		info(msg.substring(0, msg.lastIndexOf('\n')))
+}
 
 const app = express()
 
@@ -22,6 +30,8 @@ module.exports = () => {
 	app.use(bodyParser.json())
 
 	app.use(methodOverride())
+
+	app.use(morgan('combined', { stream }))
 
 	const features = readdirSync('./src/features')
 

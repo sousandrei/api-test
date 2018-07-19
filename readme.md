@@ -6,6 +6,39 @@ API Test Project
 
 Fill the .env file or set those as environment variables
 
+
+Example:
+```bash
+PORT=8080
+KNEX_DEBUG=false
+PAGE_SIZE=5
+
+LOG_LEVEL=debug
+LOG_FORMAT=text
+
+POSTGRES_URL=127.0.0.1
+POSTGRES_PORT=5432
+POSTGRES_DATABASE=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+```
+
+#### Log Levels
+```
+error:   0 
+warn:    1 
+info:    2 
+verbose: 3 
+debug:   4 
+silly:   5 
+```
+
+#### Log Format
+```
+json
+text
+```
+
 ### Installing dependencies
 ```javascript
 npm i 

@@ -1,21 +1,22 @@
 require('dotenv').config()
 
 const {
-	PORT,
-	ENV
+	PORT
 } = process.env
+
+const { info } = require('./config/logger')
 
 /* istanbul ignore next */
 process.on('unhandledRejection', (reason, p) => console.error(reason, p))
 
 async function main() {
 
-	console.log('starting')
-	
+	info('starting')
+
 	await require('./config/bookshelf').startBookshelf()
-	
+
 	let app = require('./config/express')()
-	
+
 	let server = await startServer(app)
 
 	/* istanbul ignore next */
@@ -28,13 +29,11 @@ async function main() {
 }
 
 async function stopServer(server) {
-	console.log('exiting')
-	
+	info('exiting')
+
 	await new Promise(resolve => server.close(resolve))
 
-	/* istanbul ignore next */
-	if (ENV != 'test')
-		console.log('HTTP server offline')
+	info('HTTP server offline')
 
 	await require('./config/bookshelf').stopBookshelf()
 }
@@ -44,9 +43,7 @@ function startServer(app) {
 		let server = require('http')
 			.createServer(app)
 			.listen(PORT, () => {
-				/* istanbul ignore next */
-				if (ENV != 'test')
-					console.log(`HTTP server online ${PORT}`)
+				info(`HTTP server online ${PORT}`)
 
 				resolve(server)
 			})

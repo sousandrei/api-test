@@ -16,6 +16,8 @@ const {
 let Knex = require('knex')
 let Bookshelf = require('bookshelf')
 
+const { info } = require('./logger')
+
 exports.getBookshelf = () => Bookshelf
 exports.getKnex = () => Knex
 
@@ -38,12 +40,10 @@ exports.startBookshelf = async () => {
 		Bookshelf.plugin('registry')
 
 	} catch (err) /* istanbul ignore next */ {
-		console.error(err)
+		throw err
 	}
 
-	/* istanbul ignore next */
-	if (ENV != 'test')
-		console.log('postgres connected')
+	info('postgres connected')
 }
 
 exports.stopBookshelf = async () => {
@@ -51,10 +51,8 @@ exports.stopBookshelf = async () => {
 	try {
 		await Knex.destroy()
 	} catch (err) /* istanbul ignore next */ {
-		console.error(err)
+		throw err
 	}
 
-	/* istanbul ignore next */
-	if (ENV != 'test')
-		console.log('postgres disconnected')
+	info('postgres disconnected')
 }
